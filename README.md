@@ -5,6 +5,22 @@ A terminal-based RPG game built with Python featuring turn-based combat, quests,
 # 🎮 About The Game
 Dragonfall: Ashen Curse is a text-based RPG where the player fights enemies, completes quests, collects loot, upgrades stats, and faces a final boss dragon. The game is built using Python OOP principles and focuses on strategy, progression, and survival.
 
+# 📖 Story
+
+In the land of **Eldoria**, peace was shattered when an ancient beast known as the **Ancient Dragon** awakened. It was not just a monster, but the origin of a dark curse that spread across the world.
+
+From the dragon’s corrupted energy, the **Dark Mage** was born, mastering forbidden dark magic. He raised an army of the undead—**Skeletons**—to protect his secrets and spread chaos across the land.
+
+Meanwhile, in the ruined forests, **Goblins** emerged, taking advantage of the chaos to become thieves and mercenaries, serving any power that guarantees their survival.
+
+You are the last hope of this world…
+
+Your mission is to stop the chain of destruction:
+
+🧙 Dark Mage → ☠ Skeleton Army → 👾 Goblins → 🔥 Ancient Dragon
+
+And bring peace back to Eldoria once again.
+
 # 🧠 Features
 ⚔️ Turn-based combat system with basic & special attacks, dodge and defense mechanics.  
 👾 Multiple enemies including Goblin, Skeleton, Dark Mage, and Ancient Dragon boss.  
