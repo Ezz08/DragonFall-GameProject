@@ -48,7 +48,7 @@ GameProject/
 └── save.json
 
 # ▶️ How to Run
-Install Python, pyfiglet library, rich library, open terminal in project folder, then run:
+Install Python, pyfiglet library(pip install pyfiglet), rich library(pip install rich), open terminal in project folder, then run:
 python main.py
 
 # 🎮 Controls
