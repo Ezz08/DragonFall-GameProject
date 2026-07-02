@@ -21,14 +21,17 @@ class Player(Character):
         potion = self.inventory.search_item("Attack Potion")
         Dragon_Sword = self.inventory.search_item("Dragon Sword")
 
-        if self.level <= 5:
+        if self.level <= 3:
             attack *= 1
 
-        elif self.level <= 10:
-            attack *= 1.5
+        elif self.level == 4 or self.level == 5:
+            attack *= 2     
+
+        elif self.level == 6 and self.level <= 10:
+            attack *= 3
 
         elif self.level > 10:
-            attack *= 2
+            attack *= 5
 
         if sword:
               attack += sword.attack_bonus
@@ -52,11 +55,14 @@ class Player(Character):
         leather_shield = self.inventory.search_item("Leather Shield")
         Dragon_Scale_Armor = self.inventory.search_item("Dragon Scale Armor")
 
-        if self.level <= 5:
+        if self.level <= 3:
             defense *= 1
 
-        elif self.level <= 10:
-            defense *= 1.5
+        elif self.level == 4 or self.level == 5:
+            defense *= 2    
+
+        elif self.level == 6 and self.level <= 10:
+            defense *= 3
 
         elif self.level > 10:
             defense *= 2

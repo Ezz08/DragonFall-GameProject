@@ -4,21 +4,18 @@
         "health": 100,
         "attack": 20,
         "defense": 10,
-        "level": 3,
-        "gold": 260,
-        "exp": 31,
+        "level": 4,
+        "gold": 510,
+        "exp": 82,
         "vitality": 5,
         "speed": 10
     },
-    "inventory": [
-        "Speed Potion",
-        "Health Potion"
-    ],
+    "inventory": [],
     "quests": [
         {
             "title": "Goblin Hunter",
-            "current_kills": 0,
-            "completed": false,
+            "current_kills": 7,
+            "completed": true,
             "reward_claimed": false,
             "repeatable": true
         },
