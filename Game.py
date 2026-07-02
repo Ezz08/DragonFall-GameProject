@@ -479,7 +479,8 @@ class Game:
                 break
 
         elif choice == "4":
-            result = self.battle(self.create_enemy("dragon"))
+            dragon = self.create_enemy("dragon")
+            result = self.battle_dragon(dragon)
 
             if result == "main_menu":
                 break
