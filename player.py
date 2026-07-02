@@ -15,68 +15,67 @@ class Player(Character):
         Player.CountPlayers += 1
   
     def basic_attack(self):
-        attack = self.attack
-        sword = self.inventory.search_item("Iron Sword")
-        arrow = self.inventory.search_item("Arrow")
-        potion = self.inventory.search_item("Attack Potion")
-        Dragon_Sword = self.inventory.search_item("Dragon Sword")
+      attack = self.attack
 
-        if self.level <= 3:
-            attack *= 1
+      sword = self.inventory.search_item("Iron Sword")
+      arrow = self.inventory.search_item("Arrow")
+      potion = self.inventory.search_item("Attack Potion")
+      dragon_sword = self.inventory.search_item("Dragon Sword")
 
-        elif self.level == 4 or self.level == 5:
-            attack *= 2     
+    
+      if self.level <= 3:
+        attack *= 1.2
 
-        elif self.level == 6 and self.level <= 10:
-            attack *= 3
+      elif 4 <= self.level <= 5:
+        attack *= 1.8
 
-        elif self.level > 10:
-            attack *= 5
+      elif 6 <= self.level <= 10:
+        attack *= 2.6
 
-        if sword:
-              attack += sword.attack_bonus
+      if sword:
+         attack += sword.attack_bonus 
 
-        if arrow:
-              attack += arrow.attack_bonus   
+      if arrow:
+         attack += arrow.attack_bonus 
 
-        if potion:
-                attack += potion.attack_bonus  
+      if potion:
+         attack += potion.attack_bonus    
 
-        if Dragon_Sword:
-                attack += Dragon_Sword.attack_bonus
+      if dragon_sword:
+         attack += dragon_sword.attack_bonus     
 
-
-        return attack                    
+      else:
+        attack *= 3.5                    
     
     @property
     def defend(self):
-        defense = self.defense
-        iron_shield = self.inventory.search_item("Iron Shield")
-        leather_shield = self.inventory.search_item("Leather Shield")
-        Dragon_Scale_Armor = self.inventory.search_item("Dragon Scale Armor")
+     defense = self.defense
 
-        if self.level <= 3:
-            defense *= 1
+     iron_shield = self.inventory.search_item("Iron Shield")
+     leather_shield = self.inventory.search_item("Leather Shield")
+     dragon_armor = self.inventory.search_item("Dragon Scale Armor")
 
-        elif self.level == 4 or self.level == 5:
-            defense *= 2    
+    
+     if self.level <= 3:
+        defense *= 1.2
 
-        elif self.level == 6 and self.level <= 10:
-            defense *= 3
+     elif 4 <= self.level <= 5:
+        defense *= 1.6
 
-        elif self.level > 10:
-            defense *= 2
+     elif 6 <= self.level <= 10:
+        defense *= 2.2
 
-        if iron_shield:
-            defense += iron_shield.defense_bonus
+     if iron_shield:
+        defense += iron_shield.defense_bonus
 
-        if leather_shield:
-            defense += leather_shield.defense_bonus
+     if leather_shield:
+        defense += leather_shield.defense_bonus
 
-        if Dragon_Scale_Armor:
-             defense += Dragon_Scale_Armor.defense_bonus   
+     if dragon_armor:
+        defense += dragon_armor.defense_bonus         
 
-        return defense
+     else:
+        defense *= 3
       
     
     def use_health_potion(self):
@@ -120,16 +119,21 @@ class Player(Character):
       print("⚡ Speed Potion activated!")   
  
     def special_attack(self):
-        if self.level <= 5:
-            return self.attack * 1.5
-        
-        elif self.level <= 10:
-            return self.attack * 2
-        
-        elif self.level > 10:
-            return self.attack * 2.5
-        
-        return self.attack      
+      attack = self.attack
+
+      if self.level <= 3:
+        attack *= 2.5
+
+      elif 4 <= self.level <= 5:
+        attack *= 3.5
+
+      elif 6 <= self.level <= 10:
+        attack *= 5
+
+      else:
+        attack *= 7
+
+      return attack      
   
     def earn_gold(self, amount):
         self.gold += amount
