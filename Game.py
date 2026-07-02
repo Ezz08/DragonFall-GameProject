@@ -1,0 +1,833 @@
+from player import Player
+from enemy import Enemy
+from seller import Seller
+from goblin import Goblin
+from skeleton import Skeleton
+from DarkMage import DarkMage
+from dragon import Dragon
+from items import Item
+from Quest import Quest
+import random
+from inventory import Inventory
+import json
+from ui import game_title, main_menu_panel, character_menu_panel, inventory_menu_panel, battle_menu_panel, quest_menu_panel, shop_menu_panel
+from ui import game_title
+
+class Game:
+    def __init__(self):
+        self.player = Player(
+            name = "Leo",
+            health = 100,
+            attack = 20,
+            defense = 10,
+            level = 0,
+            vitality = 5,
+            speed = 10,
+            exp=0
+        )
+
+        self.seller = Seller([
+            Item(
+                 name="Health Potion",
+                 description="Restores health",
+                 price=20,
+                 required_level=1,
+                 vitality_bonus=25
+            ),
+
+            Item(
+                name="Arrow",
+                description="increases attack",
+                price=15,
+                required_level=7,
+                attack_bonus=10      
+            ),
+
+            Item(
+                name="Speed Potion",
+                description="increases speed",
+                price=25,
+                required_level=2,
+                speed_bonus= 15     
+            ),
+
+            Item(
+                name="Leather Shield",
+                description="Basic Shield",
+                price=30,
+                required_level=4,
+                defense_bonus=15      
+            ),
+
+            Item(
+                name="Attack Potion",
+                description="Boosts attack",
+                price=100,
+                required_level=5,
+                attack_bonus=20      
+            ),
+
+            Item(
+                name="Iron Sword",
+                description="Strong sword",
+                price=300,
+                required_level=10,
+                attack_bonus=50      
+            ),
+
+            Item(
+                name="Iron Shield",
+                description="Heavy Shield",
+                price=100,
+                required_level=8,
+                defense_bonus=45     
+            ),        
+        ])
+
+        self.boss = []
+        self.boss.append(Dragon())
+
+
+        self.quests = [
+         self.create_quest("goblin"),
+         self.create_quest("skeleton"),
+         self.create_quest("darkmage"),
+         self.create_quest("dragon")
+         ]   
+
+
+    def create_quest(self, quest_type):
+
+         if quest_type == "goblin":
+           
+            quest = Quest(
+               title="Goblin Hunter",
+               target_enemy="Goblin",
+               required_kills=3,
+               reward_gold=100,
+               repeatable=True
+            )
+
+            return quest
+
+
+         elif quest_type == "skeleton":
+
+              quest = Quest(
+                title="Skeleton Slayer",
+                target_enemy="Skeleton",
+                required_kills=5,
+                reward_gold=200,
+                repeatable=True
+              )
+
+              return quest
+
+
+         elif quest_type == "darkmage":
+
+              quest = Quest(
+                title="DarkMage Slayer",
+                target_enemy="Darkmage",
+                required_kills=15,
+                reward_gold=500,
+                repeatable=False
+              )
+
+              return quest
+
+
+         elif quest_type == "dragon":
+
+              quest = Quest(
+                title="Dragon Slayer",
+                target_enemy="Ancient dragon",
+                required_kills=1,
+                reward_gold=1000,
+                repeatable=False
+              )
+
+         return quest
+        
+
+    def create_enemy(self, enemy_type):
+
+       level = self.player.level
+
+       if enemy_type == "goblin":
+
+        return Goblin(
+            name="Goblin",
+            health=50 + level * 10,
+            attack=15 + level * 3,
+            defense=15 + level * 2,
+            level=level,
+            gold_drop=20 + level * 5,
+            exp_drop=25 + level * 8,
+            vitality=5,
+            speed=5
+        )
+
+       elif enemy_type == "skeleton":
+
+        return Skeleton(
+            name="Skeleton",
+            health=85 + level * 12,
+            attack=45 + level * 4,
+            defense=30 + level * 3,
+            level=level,
+            gold_drop=50 + level * 7,
+            exp_drop=60 + level * 10,
+            vitality=15,
+            speed=20
+        )
+
+       elif enemy_type == "darkmage":
+
+        return DarkMage(
+            name="DarkMage",
+            health=150 + level * 20,
+            attack=100 + level * 8,
+            defense=60 + level * 5,
+            level=level,
+            gold_drop=100 + level * 10,
+            exp_drop=115 + level * 15,
+            vitality=32,
+            speed=45
+        )
+
+       elif enemy_type == "dragon":
+
+        return Dragon()
+       
+
+    def save_game(self):
+
+     inventory_data = []
+
+     for item in self.player.inventory.items:
+        inventory_data.append(item.name)
+
+     quests_data = []
+
+     for quest in self.quests:
+        quests_data.append({
+            "title": quest.title,
+            "current_kills": quest.current_kills,
+            "completed": quest.completed,
+            "reward_claimed": quest.reward_claimed,
+            "repeatable": quest.repeatable
+        })
+
+     data = {
+        "player": {
+            "name": self.player.name,
+            "health": self.player.health,
+            "attack": self.player.attack,
+            "defense": self.player.defense,
+            "level": self.player.level,
+            "gold": self.player.gold,
+            "exp": self.player.exp,
+            "vitality": self.player.vitality,
+            "speed": self.player.speed
+        },
+        "inventory": inventory_data,
+        "quests": quests_data
+    }
+
+     with open("save.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+     print("Game Saved Successfully!")
+
+
+    def load_game(self):
+
+      with open("save.json", "r") as file:
+        data = json.load(file)
+
+      player = data["player"]
+
+      self.player.name = player["name"]
+      self.player.health = player["health"]
+      self.player.attack = player["attack"]
+      self.player.defense = player["defense"]
+      self.player.level = player["level"]
+      self.player.gold = player["gold"]
+      self.player.exp = player["exp"]
+      self.player.vitality = player["vitality"]
+      self.player.speed = player["speed"]
+
+    # Inventory
+      self.player.inventory.items.clear()
+
+      for item_name in data["inventory"]:
+
+        item = self.seller.get_item(item_name)
+
+        if item:
+            self.player.inventory.add_item(item)
+
+    # Quests
+      for saved_quest in data["quests"]:
+
+        for quest in self.quests:
+
+            if quest.title == saved_quest["title"]:
+
+                quest.current_kills = saved_quest["current_kills"]
+                quest.completed = saved_quest["completed"]
+                quest.reward_claimed = saved_quest["reward_claimed"]
+                quest.repeatable = saved_quest["repeatable"]
+
+      print("Game Loaded Successfully!")
+       
+       
+    
+    
+    def main_menu(self):
+
+        while True:
+            game_title()
+            main_menu_panel()
+
+            choice = input("Choose:")
+
+            if choice == "1":
+                self.character_menu()
+
+            elif choice == "2":
+                print(self.inventory_menu())
+
+            elif choice == "3":
+                self.battle_menu()
+
+            elif choice == "4":
+                self.quest_menu()
+
+            elif choice == "5":
+                self.shop_menu()
+
+            elif choice == "6":
+                self.save_game()
+
+            elif choice == "7":
+                self.load_game()
+
+            elif choice == "8":
+                break
+
+    def character_menu(self):
+
+        while True:
+            game_title()
+            character_menu_panel()
+
+            choice = input("choose:") 
+
+            if choice == "1":
+                print(self.player.__str__())
+
+            elif choice == "2":
+                self.show_enemies()
+
+            elif choice == "3":
+                self.show_bosses()
+
+            elif choice == "4":
+                break 
+
+    def show_enemies(self):
+
+      print("\n=== ENEMIES ===")
+
+      enemies = [
+        self.create_enemy("goblin"),
+        self.create_enemy("skeleton"),
+        self.create_enemy("darkmage")
+      ]
+
+      for enemy in enemies:
+         print(enemy)
+
+    def show_bosses(self):
+
+        print("\n=== BOSS ===")
+
+        for boss in self.boss:
+            print(boss)  
+
+
+    def inventory_menu(self):
+
+       while True:
+          game_title()
+          inventory_menu_panel()
+
+          choice = input("Choose:") 
+
+          if choice == "1":
+             print(self.player.inventory.__str__())
+
+          elif choice == "2":
+
+             item_name = input("Enter Item Name:")
+
+             item = self.player.inventory.search_item(item_name)
+
+             if item:
+                print(item.name)
+             else:
+                print("Item not Found")
+
+          elif choice == "3":
+
+             item_name = input("Enter item name: ")
+
+             item = self.player.inventory.search_item(item_name)      
+
+             if item:
+                self.player.inventory.remove_item(item)  
+
+          elif choice == "4":
+            break    
+
+    def quest_menu(self):
+
+       while True:
+          game_title()
+          quest_menu_panel()
+
+          choice = input("choose:")
+
+          if choice == "1":
+             self.show_quests()
+
+          elif choice == "2":
+             self.claim_rewards()
+
+          elif choice == "3":
+             break
+
+    def show_quests(self):
+       
+       print("\n=== QUESTS ===")
+
+       for quest in self.quests:
+          print(quest)  
+
+
+    def claim_rewards(self):
+
+     quest_name = input("Enter quest title: ")
+
+     for quest in self.quests:
+
+        if quest.title.lower() == quest_name.lower():
+
+            quest.claim_reward(self.player)
+            return
+
+    def shop_menu(self):
+
+     while True:
+
+        print("\n=== MERCHANT ===")
+        print(f"Player's Gold: {self.player.gold}")
+        print(f"Player's level: {self.player.level}")
+
+        self.seller.show_items(self.player)
+
+        game_title()
+        shop_menu_panel()
+
+        choice = input("Choose: ")
+
+        if choice == "1":
+
+            item_name = input("Enter item name: ")
+            self.seller.buy_item(self.player, item_name)
+
+        elif choice == "2":
+            break         
+
+
+    def battle_menu(self):
+
+      while True:
+        game_title()
+        battle_menu_panel()
+
+        choice = input("Choose: ")
+
+        if choice == "1":
+            enemy = self.create_enemy("goblin")
+            result = self.battle(enemy)
+
+            if result == "main_menu":
+                break
+
+        elif choice == "2":
+            enemy = self.create_enemy("skeleton")
+            result = self.battle(enemy)
+
+            if result == "main_menu":
+                break
+
+        elif choice == "3":
+            enemy = self.create_enemy("darkmage")
+            result = self.battle(enemy)
+
+            if result == "main_menu":
+                break
+
+        elif choice == "4":
+            enemy = self.create_enemy("dragon")
+            result = self.battle_dragon(enemy)
+
+            if result == "main_menu":
+                break
+
+        elif choice == "5":
+            break
+
+    def battle(self, enemy):
+       
+       print("Battle started")
+       print("Player HP:", self.player.health)
+       print("Enemy HP:", enemy.health)
+       
+       player_special_cooldown = 0
+
+       print(f"A wild {enemy.name} appeared!")
+                      
+       while self.player.health > 0 and enemy.health > 0: 
+
+          print("\n━━━━━━━━━━━━━━━━━━━━━━")
+          print(f"{self.player.name}: {self.player.health}")
+          print(f"{enemy.name}: {enemy.health}")
+          print("━━━━━━━━━━━━━━━━━━━━━━\n")
+
+          print("\n=== YOUR TURN ===")
+          print("1. Basic Attack")
+
+          if player_special_cooldown == 0:
+            print("2. Special Attack")
+
+          if self.player.inventory.has_item("Health Potion"):
+            print("3. Health Potion") 
+
+          if self.player.inventory.has_item("Speed Potion"):
+            print("4. Speed Potion")
+
+          choice = input("Choose:") 
+
+          if choice == "1":
+             self.player.basic_attack_target(enemy)
+
+             if enemy.health <= 0:
+               return self.victory(enemy)      
+
+          elif choice == "2":
+
+             if player_special_cooldown == 0:
+
+                self.player.special_attack_target(enemy)
+
+                if enemy.health <= 0:
+                  result = self.victory(enemy)
+                  return result
+                
+                player_special_cooldown = 2
+
+             else:
+
+                print(
+                    f"Special Attack available after "
+                    f"{player_special_cooldown} rounds."
+                )     
+
+                continue
+
+          elif choice == "3":
+             self.player.use_health_potion()
+
+             continue
+
+          elif choice == "4":
+             self.player.use_speed_potion()
+
+             continue
+                  
+
+          print("\n=== ENEMY TURN ===")
+          print("1. Defend")
+          print("2. Dribble")    
+
+          defend_choice = input("Choose: ")
+
+          if defend_choice == "1":
+             
+             damage = enemy.basic_attack() - self.player.defend
+
+             if damage < 0:
+                damage = 0
+
+             self.player.take_damage(damage)
+
+             if self.player.health <= 0:
+                  result = self.game_over(enemy)
+                  return result
+
+             print(f"You blocked part of the attack!")
+             print(f"You received {damage} damage.")
+
+          if defend_choice == "2":
+
+             if self.player.speed_potion_active:
+
+                print("Perfect Dodge!")
+                self.player.speed_potion_active = False   
+
+             else:
+
+                if random.randint(1,100) <= 50:
+                     
+                     print("You dodged successfully!")
+
+               
+                else:
+
+                   damage = enemy.special_attack()
+
+                   self.player.take_damage(damage) 
+
+                   if self.player.health <= 0:
+                     result = self.game_over(enemy)
+                     return result
+
+                   print("Dodge Failed!")
+                   print(f"You received {damage} damage.")               
+
+  
+    def game_over(self, enemy):
+
+       print("\n===== GAME OVER =====")
+       print(f"You were defeated by {enemy.name}!")
+
+       print(f"Level : {self.player.level}")
+       print(f"Gold  : {self.player.gold}")
+       print(f"EXP   : {self.player.exp}")
+
+       print("\n1. Retry")
+       print("2. Main Menu")
+       print("3. Exit")
+
+       choice = input("Choose: ")
+
+       if choice == "1":
+          
+          self.player.health = 100
+          return self.battle(enemy)
+
+       elif choice == "2":
+          
+          self.player.health = 100
+          return "main_menu"
+       
+       else:
+         
+         exit()   
+
+
+    def victory(self, enemy):
+
+      print(f"\n===== VICTORY =====")
+      print(f"You defeated {enemy.name}!")
+
+      gold = enemy.gold_drop
+      exp = enemy.exp_drop
+
+      self.player.health = 100
+
+      print(f"You earned {gold} Gold!")
+      print(f"You earned {exp} EXP!")
+
+      self.player.earn_gold(gold)
+      self.player.gain_exp(exp)
+
+      for quest in self.quests:
+        quest.update_progress(enemy.name)
+
+      print("\n1. Continue")
+      print("2. Main Menu")
+
+      choice = input("Choose: ")
+
+      if choice == "1":
+         return 
+  
+      if choice == "2":
+         return "main_menu"            
+
+                  
+    def battle_dragon(self, dragon):
+       
+       print("Battle started")
+       
+       player_special_cooldown = 0
+
+       print(f"\n🔥 FINAL BOSS: {dragon.name} appears!")
+
+       while self.player.health > 0 and dragon.health > 0:
+          
+          dragon.check_phase()
+
+          print("\n==============================")
+          print(f"Player: {self.player.health} HP")
+          print(f"{dragon.name}: {dragon.health} HP")
+          print("==============================")
+
+          print("\n=== YOUR TURN ===")
+          print("1. Basic Attack")
+
+          if player_special_cooldown == 0:
+             print("2. Special Attack")
+
+          if self.player.inventory.has_item("Health Potion"):
+             print("3. Health Potion")
+
+          if self.player.inventory.has_item("Speed Potion"):
+             print("4. Speed Potion")
+
+          choice = input("Choose: ")
+
+          if choice == "1":
+            self.player.basic_attack_target(dragon)
+
+          elif choice == "2":
+            self.player.special_attack_target(dragon)
+
+          elif choice == "3":
+            self.player.use_health_potion()
+            continue
+
+          elif choice == "4":
+            self.player.use_speed_potion()
+            continue
+
+          print("\n=== DRAGON TURN ===")
+          print("1. Defend")
+          print("2. Dribble")
+
+          defend_choice = input("Choose: ")
+
+          if defend_choice == "1":
+             
+             damage = dragon.basic_attack(self.player) - self.player.defend
+
+             if damage < 0:
+                damage = 0
+
+             self.player.take_damage(damage)
+
+             if self.player.health <= 0:
+                 result = self.dragon_game_over()
+                 return result
+
+             print(f"You blocked part of the attack!")
+             print(f"You received {damage} damage.")
+
+          if defend_choice == "2":
+
+             if self.player.speed_potion_active:
+
+                print("Perfect Dodge!")
+                self.player.speed_potion_active = False   
+
+             else:
+
+                if random.randint(1,100) <= 50:
+                     
+                     print("You dodged successfully!")
+
+               
+                else:
+
+                   damage = dragon.special_attack(self.player)
+
+                   self.player.take_damage(damage) 
+
+                   if self.player.health <= 0:
+                     result = self.dragon_game_over()
+                     return result
+
+                   print("Dodge Failed!")
+                   print(f"You received {damage} damage.") 
+          
+
+          if dragon.health <= 0:
+            print("\n🔥 DRAGON DEFEATED! 🔥")
+
+            gold = dragon.gold_drop
+            exp = dragon.exp_drop
+
+            print(f"You earned {gold} Gold!")
+
+            self.player.earn_gold(gold)
+            self.player.gain_exp(exp)
+
+            for quest in self.quests:
+              quest.update_progress(dragon.name)
+
+            loot = dragon.drop_loot()
+
+            print("\n🎁 Loot Dropped:")
+            for item in loot:
+               print(f"- {item.name}")
+
+            self.player.health = 100
+            print("Dragon battle ended")
+            return
+       
+    def dragon_game_over(self):
+
+      print("\n===== GAME OVER =====")
+      print("You were defeated by the Ancient Dragon!")
+
+      print(f"Level : {self.player.level}")
+      print(f"Gold  : {self.player.gold}")
+      print(f"EXP   : {self.player.exp}")
+
+      print("\n1. Retry")
+      print("2. Main Menu")
+      print("3. Exit")
+
+      choice = input("Choose: ")
+
+      if choice == "1":
+
+        self.player.health = 100
+
+        dragon = Dragon()
+
+        return self.battle_dragon(dragon)
+
+      elif choice == "2":
+        
+        self.player.health = 100
+        return "main_menu" 
+
+      elif choice == "3":
+
+        exit()   
+
+          
+
+
+     
+    
+
+     
+
+  
