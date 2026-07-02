@@ -769,28 +769,7 @@ class Game:
           
 
           if dragon.health <= 0:
-            print("\n🔥 DRAGON DEFEATED! 🔥")
-
-            gold = dragon.gold_drop
-            exp = dragon.exp_drop
-
-            print(f"You earned {gold} Gold!")
-
-            self.player.earn_gold(gold)
-            self.player.gain_exp(exp)
-
-            for quest in self.quests:
-              quest.update_progress(dragon.name)
-
-            loot = dragon.drop_loot()
-
-            print("\n🎁 Loot Dropped:")
-            for item in loot:
-               print(f"- {item.name}")
-
-            self.player.health = 100
-            print("Dragon battle ended")
-            return
+            return self.dragon_victory_menu(dragon)
        
     def dragon_game_over(self):
 
@@ -823,6 +802,50 @@ class Game:
       elif choice == "3":
 
         exit()   
+
+
+    def dragon_victory_menu(self, dragon):
+
+      print("\n🔥🔥 DRAGON DEFEATED! 🔥🔥")
+      print("================================")
+      print("1. Take Rewards")
+      print("2. View Loot")
+      print("3. Exit to Main Menu")
+      print("================================")
+
+      choice = input("Choose: ")
+
+      gold = dragon.gold_drop
+      exp = dragon.exp_drop
+
+      if choice == "1":
+        print(f"\n💰 You earned {gold} Gold!")
+        print(f"⭐ You gained {exp} EXP!")
+
+        self.player.earn_gold(gold)
+        self.player.gain_exp(exp)
+
+        for quest in self.quests:
+            quest.update_progress(dragon.name)
+
+        self.player.health = 100
+
+        return "main_menu"
+
+      elif choice == "2":
+        loot = dragon.drop_loot()
+
+        print("\n🎁 Loot Dropped:")
+        for item in loot:
+            print(f"- {item.name}")
+            self.player.inventory.add_item(item)
+
+        return self.dragon_victory_menu(dragon)
+
+      else:
+        print("Returning to main menu...")
+        self.player.health = 100
+        return "main_menu"
 
           
 
