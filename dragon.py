@@ -6,9 +6,9 @@ class Dragon(Boss):
 
         super().__init__(
             name="Ancient Dragon",
-            health=300,
-            attack=240,
-            defense=200,
+            health=100,
+            attack=65,
+            defense=40,
             level=5,
             gold_drop=500,
             exp_drop=1000,
