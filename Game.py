@@ -461,29 +461,25 @@ class Game:
         choice = input("Choose: ")
 
         if choice == "1":
-            enemy = self.create_enemy("goblin")
-            result = self.battle(enemy)
+            result = self.battle(self.create_enemy("goblin"))
 
             if result == "main_menu":
                 break
 
         elif choice == "2":
-            enemy = self.create_enemy("skeleton")
-            result = self.battle(enemy)
+            result = self.battle(self.create_enemy("skeleton"))
 
             if result == "main_menu":
                 break
 
         elif choice == "3":
-            enemy = self.create_enemy("darkmage")
-            result = self.battle(enemy)
+            result = self.battle(self.create_enemy("darkmage"))
 
             if result == "main_menu":
                 break
 
         elif choice == "4":
-            enemy = self.create_enemy("dragon")
-            result = self.battle_dragon(enemy)
+            result = self.battle(self.create_enemy("dragon"))
 
             if result == "main_menu":
                 break
