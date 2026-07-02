@@ -46,6 +46,7 @@ class Player(Character):
 
       else:
         attack *= 3.5 
+      return attack   
           
     
     @property
