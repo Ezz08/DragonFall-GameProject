@@ -32,7 +32,7 @@ class Game:
                  description="Restores health",
                  price=20,
                  required_level=1,
-                 vitality_bonus=25
+                 vitality_bonus=30
             ),
 
             Item(
@@ -40,7 +40,7 @@ class Game:
                 description="increases attack",
                 price=15,
                 required_level=7,
-                attack_bonus=10      
+                attack_bonus=8      
             ),
 
             Item(
@@ -48,7 +48,7 @@ class Game:
                 description="increases speed",
                 price=25,
                 required_level=2,
-                speed_bonus= 15     
+                speed_bonus= 10     
             ),
 
             Item(
@@ -56,7 +56,7 @@ class Game:
                 description="Basic Shield",
                 price=30,
                 required_level=4,
-                defense_bonus=15      
+                defense_bonus=12      
             ),
 
             Item(
@@ -64,7 +64,7 @@ class Game:
                 description="Boosts attack",
                 price=100,
                 required_level=5,
-                attack_bonus=20      
+                attack_bonus=18      
             ),
 
             Item(
@@ -72,7 +72,7 @@ class Game:
                 description="Strong sword",
                 price=300,
                 required_level=10,
-                attack_bonus=50      
+                attack_bonus=40      
             ),
 
             Item(
@@ -80,7 +80,7 @@ class Game:
                 description="Heavy Shield",
                 price=100,
                 required_level=8,
-                defense_bonus=45     
+                defense_bonus=35     
             ),        
         ])
 
