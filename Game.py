@@ -623,7 +623,7 @@ class Game:
 
        if choice == "1":
           
-          self.player.health = 100
+           self.player.health = 100
            if enemy.name == "Goblin":
              enemy = self.create_enemy("goblin")
            elif enemy.name == "Skeleton":
