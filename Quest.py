@@ -3,7 +3,7 @@ class Quest:
         self.title = title
         self.target_enemy = target_enemy
         self.required_kills = required_kills
-        self.current_kills = 0
+        self.current_kills -= self.required_kills
         self.reward_gold = reward_gold
         self.completed = False
         self.reward_claimed = False
@@ -35,7 +35,7 @@ class Quest:
       print(f"You claimed {self.reward_gold} Gold!")
 
       if self.repeatable:
-        self.current_kills = 0
+        self.current_kills -= self.required_kills
         self.completed = False
         self.reward_claimed = False 
 
