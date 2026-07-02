@@ -175,4 +175,13 @@ class Player(Character):
 
 
     def __str__(self):
-        return f"{super().__str__()}, Level: {self.level}, Vitality: {self.vitality}, speed: {self.speed}, exp: {self.exp}"
+     return (
+        f"Name: {self.name}\n"
+        f"Health: {self.health}\n"
+        f"Attack: {self.basic_attack()}\n"
+        f"Defense: {self.defend}\n"
+        f"Level: {self.level}\n"
+        f"Vitality: {self.vitality}\n"
+        f"Speed: {self.speed}\n"
+        f"EXP: {self.exp}"
+     )
