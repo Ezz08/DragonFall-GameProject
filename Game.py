@@ -158,9 +158,9 @@ class Game:
 
         return Goblin(
             name="Goblin",
-            health=50 + level * 10,
-            attack=15 + level * 3,
-            defense=15 + level * 2,
+            health=100,
+            attack=18 + level * 2,
+            defense=8 + level,
             level=level,
             gold_drop=20 + level * 5,
             exp_drop=25 + level * 8,
@@ -172,9 +172,9 @@ class Game:
 
         return Skeleton(
             name="Skeleton",
-            health=85 + level * 12,
-            attack=45 + level * 4,
-            defense=30 + level * 3,
+            health=100,
+            attack=28 + level * 3,
+            defense=15 + level * 2,
             level=level,
             gold_drop=50 + level * 7,
             exp_drop=60 + level * 10,
@@ -186,9 +186,9 @@ class Game:
 
         return DarkMage(
             name="DarkMage",
-            health=150 + level * 20,
-            attack=100 + level * 8,
-            defense=60 + level * 5,
+            health=100,
+            attack=40 + level * 4,
+            defense=25 + level * 2,
             level=level,
             gold_drop=100 + level * 10,
             exp_drop=115 + level * 15,
