@@ -34,7 +34,7 @@ class Dragon(Boss):
       loot.append(Item(
         name="Dragon Scale Armor",
         description="Armor made from dragon scales",
-        defense_bonus=100,
+        defense_bonus=60,
         price=0,
         required_level=10
     ))
@@ -44,7 +44,7 @@ class Dragon(Boss):
         description="Weapon forged from dragon fire",
         price=0,
         required_level=10,
-        attack_bonus=120
+        attack_bonus=70
     ))
 
       return loot   
