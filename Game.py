@@ -726,7 +726,7 @@ class Game:
 
           if defend_choice == "1":
              
-             damage = dragon.basic_attack(self.player) - self.player.defend
+             damage = dragon.basic_attack() - self.player.defend
 
              if damage < 0:
                 damage = 0
@@ -756,7 +756,7 @@ class Game:
                
                 else:
 
-                   damage = dragon.special_attack(self.player)
+                   damage = dragon.special_attack()
 
                    self.player.take_damage(damage) 
 
@@ -769,7 +769,8 @@ class Game:
           
 
           if dragon.health <= 0:
-            return self.dragon_victory_menu(dragon)
+            result = self.dragon_victory_menu(dragon)
+            return result  
        
     def dragon_game_over(self):
 
