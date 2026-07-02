@@ -45,7 +45,8 @@ class Player(Character):
          attack += dragon_sword.attack_bonus     
 
       else:
-        attack *= 3.5                    
+        attack *= 3.5 
+      return attack    
     
     @property
     def defend(self):
@@ -76,6 +77,7 @@ class Player(Character):
 
      else:
         defense *= 3
+     return defense   
       
     
     def use_health_potion(self):
