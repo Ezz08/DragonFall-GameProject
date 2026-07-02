@@ -3,7 +3,7 @@ class Quest:
         self.title = title
         self.target_enemy = target_enemy
         self.required_kills = required_kills
-        self.current_kills -= self.required_kills
+        self.current_kills = 0
         self.reward_gold = reward_gold
         self.completed = False
         self.reward_claimed = False
@@ -36,8 +36,13 @@ class Quest:
 
       if self.repeatable:
         self.current_kills -= self.required_kills
+
+      if self.current_kills >= self.required_kills:
+        self.completed = True
+      else:
         self.completed = False
-        self.reward_claimed = False 
+
+      self.reward_claimed = False 
 
 
     def __str__(self):
