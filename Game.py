@@ -707,9 +707,13 @@ class Game:
 
           if choice == "1":
             self.player.basic_attack_target(dragon)
+            if dragon.health <= 0:
+                return self.dragon_victory_menu(dragon)
 
           elif choice == "2":
             self.player.special_attack_target(dragon)
+            if dragon.health <= 0:
+                return self.dragon_victory_menu(dragon)
 
           elif choice == "3":
             self.player.use_health_potion()
@@ -831,6 +835,7 @@ class Game:
             quest.update_progress(dragon.name)
 
         self.player.health = 100
+        self.dragon_victory_menu(dragon)  
 
       elif choice == "2":
         loot = dragon.drop_loot()
