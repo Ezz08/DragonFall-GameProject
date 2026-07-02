@@ -1,0 +1,47 @@
+{
+    "player": {
+        "name": "Leo",
+        "health": 100,
+        "attack": 20,
+        "defense": 10,
+        "level": 3,
+        "gold": 260,
+        "exp": 31,
+        "vitality": 5,
+        "speed": 10
+    },
+    "inventory": [
+        "Speed Potion",
+        "Health Potion"
+    ],
+    "quests": [
+        {
+            "title": "Goblin Hunter",
+            "current_kills": 0,
+            "completed": false,
+            "reward_claimed": false,
+            "repeatable": true
+        },
+        {
+            "title": "Skeleton Slayer",
+            "current_kills": 1,
+            "completed": false,
+            "reward_claimed": false,
+            "repeatable": true
+        },
+        {
+            "title": "DarkMage Slayer",
+            "current_kills": 0,
+            "completed": false,
+            "reward_claimed": false,
+            "repeatable": false
+        },
+        {
+            "title": "Dragon Slayer",
+            "current_kills": 0,
+            "completed": false,
+            "reward_claimed": false,
+            "repeatable": false
+        }
+    ]
+}
