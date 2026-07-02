@@ -5,8 +5,8 @@
         "attack": 20,
         "defense": 10,
         "level": 4,
-        "gold": 510,
-        "exp": 82,
+        "gold": 550,
+        "exp": 139,
         "vitality": 5,
         "speed": 10
     },
@@ -14,7 +14,7 @@
     "quests": [
         {
             "title": "Goblin Hunter",
-            "current_kills": 7,
+            "current_kills": 8,
             "completed": true,
             "reward_claimed": false,
             "repeatable": true
