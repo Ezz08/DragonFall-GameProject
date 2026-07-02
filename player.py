@@ -32,6 +32,9 @@ class Player(Character):
       elif 6 <= self.level <= 10:
         attack *= 2.6
 
+      else:
+        attack *= 3.5
+
       if sword:
          attack += sword.attack_bonus 
 
@@ -43,9 +46,7 @@ class Player(Character):
 
       if dragon_sword:
          attack += dragon_sword.attack_bonus     
-
-      else:
-        attack *= 3.5 
+          
       return attack   
           
     
@@ -67,6 +68,9 @@ class Player(Character):
      elif 6 <= self.level <= 10:
         defense *= 2.2
 
+     else:
+        defense *= 3   
+
      if iron_shield:
         defense += iron_shield.defense_bonus
 
@@ -75,9 +79,7 @@ class Player(Character):
 
      if dragon_armor:
         defense += dragon_armor.defense_bonus         
-
-     else:
-        defense *= 3
+   
      return defense   
       
     
