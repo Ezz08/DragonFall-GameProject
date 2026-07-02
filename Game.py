@@ -832,8 +832,6 @@ class Game:
 
         self.player.health = 100
 
-        return "main_menu"
-
       elif choice == "2":
         loot = dragon.drop_loot()
 
