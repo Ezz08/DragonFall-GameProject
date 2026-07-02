@@ -624,7 +624,13 @@ class Game:
        if choice == "1":
           
           self.player.health = 100
-          return self.battle(enemy)
+           if enemy.name == "Goblin":
+             enemy = self.create_enemy("goblin")
+           elif enemy.name == "Skeleton":
+             enemy = self.create_enemy("skeleton")
+           elif enemy.name == "DarkMage":
+             enemy = self.create_enemy("darkmage")
+           return self.battle(enemy)
 
        elif choice == "2":
           
