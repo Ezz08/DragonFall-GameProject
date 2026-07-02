@@ -127,16 +127,16 @@ class Player(Character):
       attack = self.attack
 
       if self.level <= 3:
-        attack *= 2.5
+        attack *= 2
 
       elif 4 <= self.level <= 5:
-        attack *= 3.5
+        attack *= 2.5
 
       elif 6 <= self.level <= 10:
-        attack *= 5
+        attack *= 3.2
 
       else:
-        attack *= 7
+        attack *= 4.5
 
       return attack      
   
