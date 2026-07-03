@@ -16,12 +16,12 @@ class Dragon(Boss):
             speed=40
         )
 
-    def special_attack(self, player):
+    def special_attack(self):
         print(f"{self.name} uses Fire Breath!")
         return self.attack * 2
 
   
-    def basic_attack(self, player):
+    def basic_attack(self):
 
        print(f"{self.name} bites the player!")
        return self.attack
