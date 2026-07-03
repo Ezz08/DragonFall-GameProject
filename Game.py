@@ -564,7 +564,7 @@ class Game:
 
           if defend_choice == "1":
              
-             damage = enemy.basic_attack() - self.player.defend
+             damage =  enemy.basic_attack() - self.player.defend
 
              if damage < 0:
                 damage = 0
@@ -770,8 +770,8 @@ class Game:
 
           if dragon.health <= 0:
             result = self.dragon_victory_menu(dragon)
-            return result  
-       
+            return result
+
     def dragon_game_over(self):
 
       print("\n===== GAME OVER =====")
@@ -846,14 +846,4 @@ class Game:
       else:
         print("Returning to main menu...")
         self.player.health = 100
-        return "main_menu"
-
-          
-
-
-     
-    
-
-     
-
-  
+        return "main_menu"   
