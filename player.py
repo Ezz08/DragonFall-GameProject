@@ -22,7 +22,6 @@ class Player(Character):
       potion = self.inventory.search_item("Attack Potion")
       dragon_sword = self.inventory.search_item("Dragon Sword")
 
-    
       if self.level <= 3:
         attack *= 1.2
 
@@ -36,19 +35,19 @@ class Player(Character):
         attack *= 3.5
 
       if sword:
-         attack += sword.attack_bonus 
+        attack += sword.attack_bonus
 
       if arrow:
-         attack += arrow.attack_bonus 
+        attack += arrow.attack_bonus
 
       if potion:
-         attack += potion.attack_bonus    
+        attack += potion.attack_bonus
 
       if dragon_sword:
-         attack += dragon_sword.attack_bonus     
-          
-      return attack   
-          
+        attack += dragon_sword.attack_bonus
+
+      return attack
+                      
     
     @property
     def defend(self):
@@ -79,9 +78,8 @@ class Player(Character):
 
      if dragon_armor:
         defense += dragon_armor.defense_bonus         
-   
-     return defense   
-      
+
+     return defense
     
     def use_health_potion(self):
 
