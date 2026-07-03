@@ -4,9 +4,9 @@
         "health": 100,
         "attack": 20,
         "defense": 10,
-        "level": 4,
-        "gold": 550,
-        "exp": 139,
+        "level": 5,
+        "gold": 886,
+        "exp": 171,
         "vitality": 5,
         "speed": 10
     },
@@ -14,14 +14,14 @@
     "quests": [
         {
             "title": "Goblin Hunter",
-            "current_kills": 8,
+            "current_kills": 9,
             "completed": true,
             "reward_claimed": false,
             "repeatable": true
         },
         {
             "title": "Skeleton Slayer",
-            "current_kills": 1,
+            "current_kills": 3,
             "completed": false,
             "reward_claimed": false,
             "repeatable": true
