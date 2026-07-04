@@ -282,7 +282,82 @@ class Game:
 
       print("Game Loaded Successfully!")
        
-       
+
+    def equip_weapon(self):
+
+      weapons = []
+
+      for item in self.player.inventory.items:
+        if item.attack_bonus > 0:
+            weapons.append(item)
+
+      if not weapons:
+        print("You don't have any weapons!")
+        return
+
+      print("\n=== WEAPONS ===")
+
+      for i, weapon in enumerate(weapons, start=1):
+        print(f"{i}. {weapon.name} (+{weapon.attack_bonus} ATK)")
+
+      choice = input("Choose weapon: ")
+
+      if not choice.isdigit():
+        return
+
+      choice = int(choice)
+
+      if 1 <= choice <= len(weapons):
+        self.player.equipped_weapon = weapons[choice - 1]
+        print(f"✅ Equipped {weapons[choice - 1].name}")
+
+    def equip_armor(self):
+
+      armors = []
+
+      for item in self.player.inventory.items:
+        if item.defense_bonus > 0:
+            armors.append(item)
+
+      if not armors:
+        print("You don't have any armor!")
+        return
+
+      print("\n=== ARMORS ===")
+
+      for i, armor in enumerate(armors, start=1):
+        print(f"{i}. {armor.name} (+{armor.defense_bonus} DEF)")
+
+      choice = input("Choose armor: ")
+
+      if not choice.isdigit():
+        return
+
+      choice = int(choice)
+
+      if 1 <= choice <= len(armors):
+        self.player.equipped_armor = armors[choice - 1]
+        print(f"✅ Equipped {armors[choice - 1].name}")
+
+    def unequip_weapon(self):
+
+     if self.player.equipped_weapon is None:
+         print("No weapon equipped.")
+         return
+
+     print(f"Unequipped {self.player.equipped_weapon.name}")
+
+     self.player.equipped_weapon = None
+
+    def unequip_armor(self):
+
+     if self.player.equipped_armor is None:
+        print("No armor equipped.")
+        return
+
+     print(f"Unequipped {self.player.equipped_armor.name}")
+
+     self.player.equipped_armor = None   
     
     
     def main_menu(self):
@@ -380,17 +455,30 @@ class Game:
              else:
                 print("Item not Found")
 
-          elif choice == "3":
+          if choice == "3":
+           self.equip_weapon()
 
+          elif choice == "4":
+           self.equip_armor()
+
+          elif choice == "5":
+           self.unequip_weapon()
+
+          elif choice == "6":
+           self.unequip_armor()
+
+          elif choice == "7":
              item_name = input("Enter item name: ")
 
              item = self.player.inventory.search_item(item_name)      
 
              if item:
-                self.player.inventory.remove_item(item)  
 
-          elif choice == "4":
-            break    
+                self.player.inventory.remove_item(item)
+   
+
+          elif choice == "8":
+           return    
 
     def quest_menu(self):
 
