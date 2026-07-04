@@ -60,15 +60,19 @@ def inventory_menu_panel():
     menu = """
 [cyan]1.[/cyan] Show Inventory
 [cyan]2.[/cyan] Search Item
-[cyan]3.[/cyan] Remove Item
-[cyan]4.[/cyan] Back
+[cyan]3.[/cyan] Equip Weapon
+[cyan]4.[/cyan] Equip Armor
+[cyan]5.[/cyan] Unequip Weapon
+[cyan]6.[/cyan] Unequip Armor
+[cyan]7.[/cyan] Remove Item
+[cyan]8.[/cyan] Back
 """
 
     console.print(
         Align.center(
             Panel(
                 menu,
-                title="[bold yellow]Inventory[/bold yellow]",
+                title="[bold yellow]🎒 Inventory[/bold yellow]",
                 border_style="green"
             )
         )
