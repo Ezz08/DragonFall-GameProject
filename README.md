@@ -66,8 +66,8 @@ Please follow these rules when playing the game:
 2
 
 ❌ Wrong:
- 1
- 2
+ --space-- 1
+ --space-- 2
 
  
 ---
