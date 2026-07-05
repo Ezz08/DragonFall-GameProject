@@ -11,7 +11,9 @@ class Inventory:
     def remove_item(self, item):
       if item in self.items:
         self.items.remove(item)
-        print(f"🗑️ {item.name} removed from inventory!")    
+        print(f"🗑️ {item.name} removed from inventory!")
+      else:
+        print(f"Item {item.name} not found in inventory.")      
 
                    
     def search_item(self, item_name):
