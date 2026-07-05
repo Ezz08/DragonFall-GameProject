@@ -20,7 +20,7 @@ class Game:
             health = 100,
             attack = 20,
             defense = 10,
-            level = 0,
+            level = 1,
             vitality = 5,
             speed = 10,
             exp=0
@@ -30,7 +30,7 @@ class Game:
             Item(
                  name="Health Potion",
                  description="Restores health",
-                 price=20,
+                 price=15,
                  required_level=1,
                  vitality_bonus=30
             ),
@@ -38,15 +38,15 @@ class Game:
             Item(
                 name="Arrow",
                 description="increases attack",
-                price=15,
+                price=10,
                 required_level=7,
-                attack_bonus=8      
+                attack_bonus=5      
             ),
 
             Item(
                 name="Speed Potion",
                 description="increases speed",
-                price=25,
+                price=20,
                 required_level=2,
                 speed_bonus= 10     
             ),
@@ -56,31 +56,31 @@ class Game:
                 description="Basic Shield",
                 price=30,
                 required_level=4,
-                defense_bonus=12      
+                defense_bonus=8      
             ),
 
             Item(
                 name="Attack Potion",
                 description="Boosts attack",
-                price=100,
+                price=40,
                 required_level=5,
-                attack_bonus=18      
+                attack_bonus=6      
             ),
 
             Item(
                 name="Iron Sword",
                 description="Strong sword",
-                price=300,
+                price=120,
                 required_level=10,
-                attack_bonus=40      
+                attack_bonus=15      
             ),
 
             Item(
                 name="Iron Shield",
                 description="Heavy Shield",
-                price=100,
+                price=90,
                 required_level=8,
-                defense_bonus=35     
+                defense_bonus=18     
             ),        
         ])
 
@@ -104,7 +104,7 @@ class Game:
                title="Goblin Hunter",
                target_enemy="Goblin",
                required_kills=3,
-               reward_gold=100,
+               reward_gold=60,
                repeatable=True
             )
 
@@ -117,7 +117,7 @@ class Game:
                 title="Skeleton Slayer",
                 target_enemy="Skeleton",
                 required_kills=5,
-                reward_gold=200,
+                reward_gold=120,
                 repeatable=True
               )
 
@@ -129,8 +129,8 @@ class Game:
               quest = Quest(
                 title="DarkMage Slayer",
                 target_enemy="Darkmage",
-                required_kills=15,
-                reward_gold=500,
+                required_kills=7,
+                reward_gold=250,
                 repeatable=False
               )
 
@@ -143,7 +143,7 @@ class Game:
                 title="Dragon Slayer",
                 target_enemy="Ancient dragon",
                 required_kills=1,
-                reward_gold=1000,
+                reward_gold=800,
                 repeatable=False
               )
 
@@ -158,26 +158,26 @@ class Game:
 
         return Goblin(
             name="Goblin",
-            health=100,
-            attack=18 + level * 2,
-            defense=8 + level,
+            health=80,
+            attack=10 + level * 2,
+            defense=5 + level,
             level=level,
-            gold_drop=20 + level * 5,
-            exp_drop=25 + level * 8,
+            gold_drop=10 + level * 3,
+            exp_drop=15 + level * 5,
             vitality=5,
-            speed=5
+            speed=10
         )
 
        elif enemy_type == "skeleton":
 
         return Skeleton(
             name="Skeleton",
-            health=100,
-            attack=28 + level * 3,
-            defense=15 + level * 2,
+            health=120,
+            attack=18 + level * 3,
+            defense=10 + level * 2,
             level=level,
-            gold_drop=50 + level * 7,
-            exp_drop=60 + level * 10,
+            gold_drop=25 + level * 5,
+            exp_drop=30 + level * 8,
             vitality=15,
             speed=20
         )
@@ -186,14 +186,14 @@ class Game:
 
         return DarkMage(
             name="DarkMage",
-            health=100,
-            attack=40 + level * 4,
-            defense=25 + level * 2,
+            health=150,
+            attack=25 + level * 4,
+            defense=15 + level * 3,
             level=level,
-            gold_drop=100 + level * 10,
-            exp_drop=115 + level * 15,
+            gold_drop=50 + level * 8,
+            exp_drop=60 + level * 12,
             vitality=32,
-            speed=45
+            speed=30
         )
 
        elif enemy_type == "dragon":
@@ -608,7 +608,14 @@ class Game:
           choice = input("Choose:") 
 
           if choice == "1":
-             self.player.basic_attack_target(enemy)
+             attack = self.player.basic_attack()
+             defense = enemy.defend()
+
+             damage = max(0, attack - defense)
+
+             enemy.take_damage(damage)
+
+             print(f"{self.player.name} attacks {enemy.name} for {damage} damage!")
 
              if enemy.health <= 0:
                return self.victory(enemy)      
@@ -617,7 +624,14 @@ class Game:
 
              if player_special_cooldown == 0:
 
-                self.player.special_attack_target(enemy)
+                attack = self.player.basic_attack()
+                defense = enemy.defend()
+
+                damage = max(0, attack - defense)
+
+                enemy.take_damage(damage)
+
+                print(f"{self.player.name} attacks {enemy.name} for {damage} damage!")
 
                 if enemy.health <= 0:
                   result = self.victory(enemy)
