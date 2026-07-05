@@ -126,15 +126,25 @@ class Player(Character):
         print(f"{self.name} leveled up!")
 
 
+    def get_display_stats(self):
+      return {
+        "attack": self.attack,
+        "defense": self.defense,
+        "health": self.health,
+        "level": self.level,
+        "exp": self.exp
+      }
+    
     def __str__(self):
+      stats = self.get_display_stats()
 
-     return (
+      return (
         f"Name: {self.name}\n"
-        f"Health: {self.health}\n"
-        f"Attack: {self.basic_attack()}\n"
-        f"Defense: {self.defend}\n"
-        f"Level: {self.level}\n"
+        f"Health: {stats['health']}\n"
+        f"Attack: {stats['attack']}\n"
+        f"Defense: {stats['defense']}\n"
+        f"Level: {stats['level']}\n"
         f"Vitality: {self.vitality}\n"
         f"Speed: {self.speed}\n"
-        f"EXP: {self.exp}"
-     )
+        f"EXP: {stats['exp']}"
+      )
