@@ -624,7 +624,7 @@ class Game:
 
              if player_special_cooldown == 0:
 
-                attack = self.player.basic_attack()
+                attack = self.player.special_attack()
                 defense = enemy.defend()
 
                 damage = max(0, attack - defense)
