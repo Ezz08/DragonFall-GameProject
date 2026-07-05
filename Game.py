@@ -611,7 +611,7 @@ class Game:
              attack = self.player.basic_attack()
              defense = enemy.defend()
 
-             damage = max(0, attack - defense)
+             damage = int(max(0, attack - defense))
 
              enemy.take_damage(damage)
 
@@ -627,7 +627,7 @@ class Game:
                 attack = self.player.special_attack()
                 defense = enemy.defend()
 
-                damage = max(0, attack - defense)
+                damage = int(max(0, attack - defense))
 
                 enemy.take_damage(damage)
 
@@ -667,7 +667,7 @@ class Game:
 
           if defend_choice == "1":
              
-             damage =  enemy.basic_attack() - self.player.defend
+             damage =  int(max(0, enemy.basic_attack() - self.player.defend))
 
              if damage < 0:
                 damage = 0
@@ -697,7 +697,7 @@ class Game:
                
                 else:
 
-                   damage = enemy.special_attack()
+                   damage = int(max(0, enemy.special_attack()))
 
                    self.player.take_damage(damage) 
 
@@ -706,7 +706,10 @@ class Game:
                      return result
 
                    print("Dodge Failed!")
-                   print(f"You received {damage} damage.")               
+                   print(f"You received {damage} damage.") 
+                   
+          if player_special_cooldown > 0:
+             player_special_cooldown -= 1                        
 
   
     def game_over(self, enemy):
@@ -833,7 +836,7 @@ class Game:
 
           if defend_choice == "1":
              
-             damage = dragon.basic_attack() - self.player.defend
+             damage = int(max(0, dragon.basic_attack() - self.player.defend))
 
              if damage < 0:
                 damage = 0
@@ -863,7 +866,7 @@ class Game:
                
                 else:
 
-                   damage = dragon.special_attack()
+                   damage = int(max(0, dragon.special_attack()))
 
                    self.player.take_damage(damage) 
 
