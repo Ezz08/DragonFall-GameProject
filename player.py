@@ -130,8 +130,8 @@ class Player(Character):
 
     def get_display_stats(self):
       return {
-        "attack": self.attack,
-        "defense": self.defense,
+        "attack": self.basic_attack(),
+        "defense": self.defend,
         "health": self.health,
         "level": self.level,
         "exp": self.exp
