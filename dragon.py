@@ -18,13 +18,13 @@ class Dragon(Boss):
 
     def special_attack(self):
         print(f"{self.name} uses Fire Breath!")
-        return self.attack * 1.6
+        return self.attack * (2.5 + self.level * 0.35)
 
   
     def basic_attack(self):
        
        print(f"{self.name} bites the player!")
-       return self.attack
+       return self.attack * (1 + self.level * 0.2)
 
 
     def drop_loot(self):
@@ -52,7 +52,7 @@ class Dragon(Boss):
     
     def defend(self):
         print(f"{self.name} raises its scales and reduces incoming damage!")
-        return self.defense * 1.4
+        return self.defense * (1 + self.level * 0.25)
         
 
     def check_phase(self):

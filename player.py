@@ -20,21 +20,11 @@ class Player(Character):
       attack = self.attack
 
       weapon = self.equipped_weapon
-
       if weapon:
         attack += weapon.attack_bonus
 
-      if self.level <= 3:
-        attack *= 1.2
-
-      elif 4 <= self.level <= 5:
-        attack *= 1.8
-
-      elif 6 <= self.level <= 10:
-        attack *= 2.6
-
-      else:
-        attack *= 3.5
+      level_multiplier = 1 + (self.level * 0.15)
+      attack *= level_multiplier
 
       return attack
                       
@@ -44,24 +34,11 @@ class Player(Character):
      defense = self.defense
 
      armor = self.equipped_armor
-
      if armor:
-      defense += armor.defense_bonus
+        defense += armor.defense_bonus
 
-    
-     if self.level <= 3:
-        defense *= 1.2
-
-     elif 4 <= self.level <= 5:
-        defense *= 1.6
-
-     elif 6 <= self.level <= 10:
-        defense *= 2.2
-
-     else:
-        defense *= 3   
-
-        
+     level_multiplier = 1 + (self.level * 0.12)
+     defense *= level_multiplier
 
      return defense
     
@@ -108,17 +85,8 @@ class Player(Character):
     def special_attack(self):
       attack = self.attack
 
-      if self.level <= 3:
-        attack *= 2
-
-      elif 4 <= self.level <= 5:
-        attack *= 2.5
-
-      elif 6 <= self.level <= 10:
-        attack *= 3.2
-
-      else:
-        attack *= 4.5
+      level_multiplier = 1 + (self.level * 0.25)
+      attack *= level_multiplier
 
       return attack      
   
