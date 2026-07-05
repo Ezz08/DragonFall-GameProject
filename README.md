@@ -51,6 +51,43 @@ GameProject/
 Install Python, pyfiglet library(pip install pyfiglet), rich library(pip install rich), open terminal in project folder, then run:
 python main.py
 
+# 📌 Input Rules (Important)
+
+Please follow these rules when playing the game:
+
+---
+
+## 🎮 Number Inputs
+- When selecting an option, **do NOT add spaces**
+- Enter the number directly
+
+✔ Correct:
+1
+2
+
+❌ Wrong:
+ 1
+ 2
+
+ 
+---
+
+## 💬 Text Inputs
+- Input must match **exact spelling**
+- Case-sensitive (capital letters matter)
+- Do NOT add spaces at the beginning
+
+✔ Correct:
+Health Potion
+
+❌ Wrong:
+health potion 
+
+---
+
+## ⚠️ Important Note
+The game uses strict input matching, so even small differences (spaces or capitalization) may cause the input to fail.
+
 # 🎮 Controls
 1 → Basic Attack  
 2 → Special Attack  
