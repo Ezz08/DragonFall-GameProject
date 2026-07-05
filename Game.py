@@ -534,7 +534,7 @@ class Game:
         choice = input("Choose: ")
 
         if choice == "1":
-
+                        
             item_name = input("Enter item name: ")
             self.seller.buy_item(self.player, item_name)
 
