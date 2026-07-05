@@ -475,6 +475,8 @@ class Game:
              if item:
 
                 self.player.inventory.remove_item(item)
+             else:
+              print(f"Item {item.name} not found in inventory.")   
    
 
           elif choice == "8":
@@ -707,7 +709,7 @@ class Game:
 
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
-                   
+
           if player_special_cooldown > 0:
              player_special_cooldown -= 1                        
 
