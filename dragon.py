@@ -6,19 +6,19 @@ class Dragon(Boss):
 
         super().__init__(
             name="Ancient Dragon",
-            health=100,
-            attack=65,
-            defense=40,
+            health=300,
+            attack=40,
+            defense=25,
             level=5,
-            gold_drop=500,
-            exp_drop=1000,
+            gold_drop=300,
+            exp_drop=500,
             vitality=122,
             speed=40
         )
 
     def special_attack(self):
         print(f"{self.name} uses Fire Breath!")
-        return self.attack * 2
+        return self.attack * 1.6
 
   
     def basic_attack(self):
@@ -34,7 +34,7 @@ class Dragon(Boss):
       loot.append(Item(
         name="Dragon Scale Armor",
         description="Armor made from dragon scales",
-        defense_bonus=60,
+        defense_bonus=25,
         price=0,
         required_level=10
     ))
@@ -44,7 +44,7 @@ class Dragon(Boss):
         description="Weapon forged from dragon fire",
         price=0,
         required_level=10,
-        attack_bonus=70
+        attack_bonus=30
     ))
 
       return loot   
@@ -52,7 +52,7 @@ class Dragon(Boss):
     
     def defend(self):
         print(f"{self.name} raises its scales and reduces incoming damage!")
-        return self.defense * 2
+        return self.defense * 1.4
         
 
     def check_phase(self):
@@ -64,8 +64,8 @@ class Dragon(Boss):
 
             self.phase_two = True
 
-            self.attack += 20
-            self.defense += 10
+            self.attack = int(self.attack * 1.25)
+            self.defense = int(self.defense * 1.15)
 
             print("\n🔥 The Dragon becomes enraged! 🔥")
             print("Attack and Defense increased!")       

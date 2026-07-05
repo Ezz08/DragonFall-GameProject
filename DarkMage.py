@@ -6,38 +6,38 @@ class DarkMage(Enemy):
 
     def basic_attack(self):
         if self.level <= 5:
-            return self.attack * 1
+            return self.attack * 1.2
         
         elif self.level <= 10:
-            return self.attack * 3
+            return self.attack * 1.5
         
         elif self.level > 10:
-            return self.attack * 6
+            return self.attack * 2
         
         return self.attack
     
     def special_attack(self):
         if self.level <= 5:
-            return self.attack * 2
+            return self.attack * 1.6
         
         elif self.level <= 10:
-            return self.attack * 4
+            return self.attack * 2.2
         
         elif self.level > 10:
-            return self.attack * 8
+            return self.attack * 3
         
         return self.attack
            
     
     def defend(self):
         if self.level <= 5:
-            return self.defense * 1
+            return self.defense * 1.2
         
         elif self.level <= 10:
-            return self.defense * 3
+            return self.defense * 1.6
         
         elif self.level > 10:
-            return self.defense * 6
+            return self.defense * 2.2
         
         return self.defense
     
