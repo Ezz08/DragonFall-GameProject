@@ -115,15 +115,17 @@ class Player(Character):
         print(f"{self.name} attacks {enemy.name} for {damage} damage!")  
 
     def gain_exp(self, amount):
-        self.exp += amount
+      self.exp += amount
 
-        base_xp = 100
+      xp_needed = 100 * (1.5 ** (self.level - 1))
 
-        while self.exp > self.level * 50:
-           self.exp -= self.level * 50
-           self.level += 1
+      while self.exp >= xp_needed:
+        self.exp -= xp_needed
+        self.level += 1
 
-        print(f"{self.name} leveled up!")
+        print(f"LEVEL UP! Now level {self.level}")
+
+      xp_needed = 100 * (1.5 ** (self.level - 1))
 
 
     def get_display_stats(self):
