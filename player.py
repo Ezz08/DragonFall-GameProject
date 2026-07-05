@@ -119,9 +119,9 @@ class Player(Character):
 
         base_xp = 100
 
-        while self.exp >= base_xp * (1.5 ** self.level):
-         self.exp -= base_xp * (1.5 ** self.level)
-         self.level += 1
+        while self.exp > self.level * 50:
+           self.exp -= self.level * 50
+           self.level += 1
 
         print(f"{self.name} leveled up!")
 
