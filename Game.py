@@ -707,9 +707,9 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
-           elif choice == "":
-             print("Please choose an action!")
-             continue 
+           if defend_choice == "":
+            print("Please choose 1 or 2!")
+            continue
 
            elif defend_choice == "2":
 
