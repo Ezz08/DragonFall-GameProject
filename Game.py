@@ -655,13 +655,23 @@ class Game:
                 continue
 
            elif choice == "3":
-             self.player.use_health_potion()
+             
+             if self.player.inventory.has_item("Health Potion"):
+              self.player.use_health_potion()
 
+             else:
+
+              print("You don't have a Health Potion!")
              continue
 
            elif choice == "4":
-             self.player.use_speed_potion()
+             
+             if self.player.inventory.has_item("Speed Potion"):
+              self.player.use_speed_potion()
 
+             else:
+
+              print("You don't have a Speed Potion!")
              continue
            
            else:
