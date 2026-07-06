@@ -813,6 +813,9 @@ class Game:
 
        while self.player.health > 0 and dragon.health > 0:
           
+          if player_special_cooldown > 0:
+              player_special_cooldown -= 1
+          
           dragon.check_phase()
 
           print("\n==============================")
@@ -857,6 +860,10 @@ class Game:
            elif choice == "":
             print("Please choose an action!")
             continue
+           
+           else:
+             print("Invalid choice!")
+             continue
            
            turn = "dragon"
 
@@ -909,10 +916,7 @@ class Game:
                      return result
 
                    print("Dodge Failed!")
-                   print(f"You received {damage} damage.") 
-                   
-             if player_special_cooldown > 0:
-              player_special_cooldown -= 1      
+                   print(f"You received {damage} damage.")       
 
            else:
             print("Invalid choice!")
