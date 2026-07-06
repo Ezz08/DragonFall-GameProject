@@ -847,21 +847,29 @@ class Game:
            choice = input("Choose: ")
 
            if choice == "1":
-            if player_special_cooldown == 0:
-             self.player.basic_attack_target(dragon)
-             player_special_cooldown = 2
+            self.player.basic_attack_target(dragon)
 
+            if dragon.health <= 0:
+              return self.dragon_victory_menu(dragon)
+            
             else:
              print(f"Cooldown: {player_special_cooldown}")
              continue
 
-            if dragon.health <= 0:
-                return self.dragon_victory_menu(dragon)
-
            elif choice == "2":
-            self.player.special_attack_target(dragon)
-            if dragon.health <= 0:
-                return self.dragon_victory_menu(dragon)
+
+            if player_special_cooldown == 0:
+
+               self.player.special_attack_target(dragon)
+
+               if dragon.health <= 0:
+                 return self.dragon_victory_menu(dragon)
+
+               player_special_cooldown = 2
+
+            else:
+             print(f"Cooldown: {player_special_cooldown}")
+             continue
 
            elif choice == "3":
             self.player.use_health_potion()
@@ -1008,7 +1016,13 @@ class Game:
          dragon.reward_claimed = True
 
          for quest in self.quests:
-            quest.update_progress(dragon.name)
+          quest.update_progress(dragon.name)
+          print(
+           quest.target_enemy,
+           quest.current_kills,
+           quest.required_kills,
+           quest.completed
+          )
 
          self.player.health = 100
          return "main_menu"  
