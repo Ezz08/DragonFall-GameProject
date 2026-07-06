@@ -31,8 +31,8 @@ class Quest:
 
      if self.repeatable:
 
-        self.current_kills = 0
-        self.completed = False
+        self.current_kills -= self.required_kills
+        self.completed = self.current_kills >= self.required_kills
 
      else:
         
