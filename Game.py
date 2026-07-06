@@ -815,144 +815,130 @@ class Game:
                   
     def battle_dragon(self, dragon):
        
-       print("Battle started")
+     print("Battle started")
 
-       turn = "player"
-       
-       player_special_cooldown = 0
+     turn = "player"
+     player_special_cooldown = 0
 
-       print(f"\n🔥 FINAL BOSS: {dragon.name} appears!")
+     print(f"\n🔥 FINAL BOSS: {dragon.name} appears!")
 
-       while self.player.health > 0 and dragon.health > 0:
-                   
-          dragon.check_phase()
+     while self.player.health > 0 and dragon.health > 0:
 
-          print("\n==============================")
-          print(f"Player: {self.player.health} HP")
-          print(f"{dragon.name}: {dragon.health} HP")
-          print("==============================")
-
-          if turn == "player":
-
-           print("\n=== YOUR TURN ===")
-           print("1. Basic Attack")
-
-           if player_special_cooldown == 0:
-             print("2. Special Attack")
-
-           if self.player.inventory.has_item("Health Potion"):
-             print("3. Health Potion")
-
-           if self.player.inventory.has_item("Speed Potion"):
-             print("4. Speed Potion")
-
-           choice = input("Choose: ")
-
-           if choice == "1":
-            self.player.basic_attack_target(dragon)
-
-            if dragon.health <= 0:
-              return self.dragon_victory_menu(dragon)
-            
-           elif choice == "2":
-
-            if player_special_cooldown == 0:
-               self.player.special_attack_target(dragon)
-               player_special_cooldown = 2
-
-            else:
-               print("Special cooldown active!")
-               continue
-            
-            if dragon.health <= 0:
-              return self.dragon_victory_menu(dragon)
-                 
-
-
-           elif choice == "3":
-            self.player.use_health_potion()
-            continue
-
-           elif choice == "4":
-            self.player.use_speed_potion()
-            continue
-           
-           elif choice == "":
-            print("Please choose an action!")
-            continue
-           
-           else:
-             print("Invalid choice!")
-             continue
-           
-           turn = "dragon"
-           continue
-
-          elif turn == "dragon": 
-
-           print("\n=== DRAGON TURN ===")
-           print("1. Defend")
-           print("2. Dribble")
-
-           defend_choice = input("Choose: ")
-
-           if defend_choice == "1":
-             
-             damage = int(max(0, dragon.basic_attack() - self.player.defend))
-
-             if damage < 0:
-                damage = 0
-
-             self.player.take_damage(damage)
-
-             if self.player.health <= 0:
-                 result = self.dragon_game_over()
-                 return result
-
-             print(f"You blocked part of the attack!")
-             print(f"You received {damage} damage.")
-
-           elif defend_choice == "2":
-
-             if self.player.speed_potion_active:
-
-                print("Perfect Dodge!")
-                self.player.speed_potion_active = False   
-
-             else:
-
-                if random.randint(1,100) <= 50:
-                     
-                     print("You dodged successfully!")
-
-               
-                else:
-
-                   damage = int(max(0, dragon.special_attack()))
-
-                   self.player.take_damage(damage) 
-
-                   if self.player.health <= 0:
-                     result = self.dragon_game_over()
-                     return result
-
-                   print("Dodge Failed!")
-                   print(f"You received {damage} damage.")       
-
-           else:
-            print("Invalid choice!")
-            continue        
-
-           turn = "player"
-           continue
-          
-          if player_special_cooldown > 0:
+        if player_special_cooldown > 0:
             player_special_cooldown -= 1
 
-          if dragon.health <= 0:
-            result = self.dragon_victory_menu(dragon)
-            return result
+        dragon.check_phase()
 
+        print("\n==============================")
+        print(f"Player: {self.player.health} HP")
+        print(f"{dragon.name}: {dragon.health} HP")
+        print("==============================")
+
+        if turn == "player":
+
+            print("\n=== YOUR TURN ===")
+            print("1. Basic Attack")
+
+            if player_special_cooldown == 0:
+                print("2. Special Attack")
+
+            if self.player.inventory.has_item("Health Potion"):
+                print("3. Health Potion")
+
+            if self.player.inventory.has_item("Speed Potion"):
+                print("4. Speed Potion")
+
+            choice = input("Choose: ")
+
+            if choice == "1":
+                self.player.basic_attack_target(dragon)
+
+                if dragon.health <= 0:
+                    return self.dragon_victory_menu(dragon)
+
+            elif choice == "2":
+
+                if player_special_cooldown == 0:
+                    self.player.special_attack_target(dragon)
+                    player_special_cooldown = 2
+
+                else:
+                    print("Special cooldown active!")
+                    continue
+
+                if dragon.health <= 0:
+                    return self.dragon_victory_menu(dragon)
+
+            elif choice == "3":
+                self.player.use_health_potion()
+                continue
+
+            elif choice == "4":
+                self.player.use_speed_potion()
+                continue
+
+            elif choice == "":
+                print("Please choose an action!")
+                continue
+
+            else:
+                print("Invalid choice!")
+                continue
+
+            turn = "dragon"
+            continue
+
+        elif turn == "dragon":
+
+            print("\n=== DRAGON TURN ===")
+            print("1. Defend")
+            print("2. Dribble")
+
+            defend_choice = input("Choose: ")
+
+            if defend_choice == "1":
+
+                damage = int(max(0, dragon.basic_attack() - self.player.defend))
+
+                self.player.take_damage(damage)
+
+                if self.player.health <= 0:
+                    return self.dragon_game_over()
+
+                print(f"You blocked part of the attack!")
+                print(f"You received {damage} damage.")
+
+            elif defend_choice == "2":
+
+                if self.player.speed_potion_active:
+                    print("Perfect Dodge!")
+                    self.player.speed_potion_active = False
+
+                else:
+
+                    if random.randint(1, 100) <= 50:
+                        print("You dodged successfully!")
+
+                    else:
+                        damage = int(max(0, dragon.special_attack()))
+                        self.player.take_damage(damage)
+
+                        if self.player.health <= 0:
+                            return self.dragon_game_over()
+
+                        print("Dodge Failed!")
+                        print(f"You received {damage} damage.")
+
+            else:
+                print("Invalid choice!")
+                continue
+
+            turn = "player"
+            continue
+
+     if dragon.health <= 0:
+        return self.dragon_victory_menu(dragon)
+     
     def dragon_game_over(self):
 
       print("\n===== GAME OVER =====")
