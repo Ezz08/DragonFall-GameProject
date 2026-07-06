@@ -663,22 +663,23 @@ class Game:
              self.player.use_speed_potion()
 
              continue
+           
+           else:
+             print("Invalid choice!")
+             continue
           
              
            turn = "enemy"
 
           elif turn == "enemy":
-             
-           print("Invalid choice!")
                   
+           print("\n=== ENEMY TURN ===")
+           print("1. Defend")
+           print("2. Dribble")    
 
-          print("\n=== ENEMY TURN ===")
-          print("1. Defend")
-          print("2. Dribble")    
+           defend_choice = input("Choose: ")
 
-          defend_choice = input("Choose: ")
-
-          if defend_choice == "1":
+           if defend_choice == "1":
              
              damage =  int(max(0, enemy.basic_attack() - self.player.defend))
 
@@ -694,7 +695,7 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
-          if defend_choice == "2":
+           if defend_choice == "2":
 
              if self.player.speed_potion_active:
 
@@ -724,7 +725,7 @@ class Game:
              if player_special_cooldown > 0:
               player_special_cooldown -= 1 
 
-          else:
+           else:
              print("invalid choice!")
              continue 
           
@@ -804,6 +805,8 @@ class Game:
     def battle_dragon(self, dragon):
        
        print("Battle started")
+
+       turn = "player"
        
        player_special_cooldown = 0
 
@@ -818,45 +821,51 @@ class Game:
           print(f"{dragon.name}: {dragon.health} HP")
           print("==============================")
 
-          print("\n=== YOUR TURN ===")
-          print("1. Basic Attack")
+          if turn == "player":
 
-          if player_special_cooldown == 0:
+           print("\n=== YOUR TURN ===")
+           print("1. Basic Attack")
+
+           if player_special_cooldown == 0:
              print("2. Special Attack")
 
-          if self.player.inventory.has_item("Health Potion"):
+           if self.player.inventory.has_item("Health Potion"):
              print("3. Health Potion")
 
-          if self.player.inventory.has_item("Speed Potion"):
+           if self.player.inventory.has_item("Speed Potion"):
              print("4. Speed Potion")
 
-          choice = input("Choose: ")
+           choice = input("Choose: ")
 
-          if choice == "1":
+           if choice == "1":
             self.player.basic_attack_target(dragon)
             if dragon.health <= 0:
                 return self.dragon_victory_menu(dragon)
 
-          elif choice == "2":
+           elif choice == "2":
             self.player.special_attack_target(dragon)
             if dragon.health <= 0:
                 return self.dragon_victory_menu(dragon)
 
-          elif choice == "3":
+           elif choice == "3":
             self.player.use_health_potion()
             continue
 
-          elif choice == "4":
+           elif choice == "4":
             self.player.use_speed_potion()
             continue
+           
+           turn = "dragon"
 
-          print("\n=== DRAGON TURN ===")
-          print("1. Defend")
-          print("2. Dribble")
+          elif turn == "dragon": 
 
-          defend_choice = input("Choose: ")
+           print("\n=== DRAGON TURN ===")
+           print("1. Defend")
+           print("2. Dribble")
 
-          if defend_choice == "1":
+           defend_choice = input("Choose: ")
+
+           if defend_choice == "1":
              
              damage = int(max(0, dragon.basic_attack() - self.player.defend))
 
@@ -872,7 +881,7 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
-          if defend_choice == "2":
+           if defend_choice == "2":
 
              if self.player.speed_potion_active:
 
@@ -900,7 +909,7 @@ class Game:
                    print(f"You received {damage} damage.") 
           
 
-          if dragon.health <= 0:
+           if dragon.health <= 0:
             result = self.dragon_victory_menu(dragon)
             return result
 
@@ -978,6 +987,8 @@ class Game:
         for item in loot:
             print(f"- {item.name}")
             self.player.inventory.add_item(item)
+            print("ITEM ADDED:", item.name)
+            print("CURRENT INVENTORY:", [i.name for i in self.player.inventory.items])
 
         return self.dragon_victory_menu(dragon)
 

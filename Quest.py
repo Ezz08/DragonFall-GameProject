@@ -21,28 +21,22 @@ class Quest:
 
     def claim_reward(self, player):
 
-      if not self.completed:
+     if not self.completed:
         print("Quest is not completed yet!")
         return
 
-      if self.reward_claimed:
-        print("Reward already claimed!")
-        return
+     player.earn_gold(self.reward_gold)
 
-      player.earn_gold(self.reward_gold)
-      self.reward_claimed = True
+     print(f"You claimed {self.reward_gold} Gold!")
 
-      print(f"You claimed {self.reward_gold} Gold!")
+     if self.repeatable:
 
-      if self.repeatable:
-        self.current_kills -= self.required_kills
-
-      if self.current_kills >= self.required_kills:
-        self.completed = True
-      else:
+        self.current_kills = 0
         self.completed = False
 
-      self.reward_claimed = False 
+     else:
+        
+        self.reward_claimed = True 
 
 
     def __str__(self):
