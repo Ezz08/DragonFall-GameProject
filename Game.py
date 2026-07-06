@@ -695,7 +695,7 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
-           if defend_choice == "2":
+           elif defend_choice == "2":
 
              if self.player.speed_potion_active:
 
@@ -730,6 +730,7 @@ class Game:
              continue 
           
            turn = "player"
+           continue
                          
 
   
@@ -879,7 +880,7 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
-           if defend_choice == "2":
+           elif defend_choice == "2":
 
              if self.player.speed_potion_active:
 
@@ -906,10 +907,11 @@ class Game:
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
 
-                   turn = "player"
+           turn = "player"
+           continue
           
 
-           if dragon.health <= 0:
+          if dragon.health <= 0:
             result = self.dragon_victory_menu(dragon)
             return result
 
