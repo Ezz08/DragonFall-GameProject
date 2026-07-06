@@ -501,10 +501,12 @@ class Game:
 
     def show_quests(self):
        
-       print("\n=== QUESTS ===")
+        print("\n=== QUESTS ===")
 
-       for quest in self.quests:
-          print(quest)  
+        for quest in self.quests:
+          print(quest)
+        print("Kills:", quest.current_kills)
+        print("Completed:", quest.completed)  
 
 
     def claim_rewards(self):
@@ -1017,12 +1019,6 @@ class Game:
 
          for quest in self.quests:
           quest.update_progress(dragon.name)
-          print(
-           quest.target_enemy,
-           quest.current_kills,
-           quest.required_kills,
-           quest.completed
-          )
 
          self.player.health = 100
          return "main_menu"  
