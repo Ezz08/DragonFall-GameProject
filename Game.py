@@ -300,7 +300,7 @@ class Game:
       for i, weapon in enumerate(weapons, start=1):
         print(f"{i}. {weapon.name} (+{weapon.attack_bonus} ATK)")
 
-      choice = input("Choose weapon: ")
+      choice = input("Choose number: ")
 
       if not choice.isdigit():
         return
@@ -328,7 +328,7 @@ class Game:
       for i, armor in enumerate(armors, start=1):
         print(f"{i}. {armor.name} (+{armor.defense_bonus} DEF)")
 
-      choice = input("Choose armor: ")
+      choice = input("Choose number: ")
 
       if not choice.isdigit():
         return
