@@ -729,10 +729,8 @@ class Game:
              print("invalid choice!")
              continue 
           
-          turn = "player"
-
-    def new_method(self, turn):
-        turn = "enemy"                         
+           turn = "player"
+                         
 
   
     def game_over(self, enemy):
@@ -907,6 +905,8 @@ class Game:
 
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
+
+                   turn = "player"
           
 
            if dragon.health <= 0:
