@@ -714,11 +714,12 @@ class Game:
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
 
-          if player_special_cooldown > 0:
-             player_special_cooldown -= 1 
+             if player_special_cooldown > 0:
+              player_special_cooldown -= 1 
 
           else:
-             print("invalid choice!")                          
+             print("invalid choice!")
+             continue                          
 
   
     def game_over(self, enemy):
