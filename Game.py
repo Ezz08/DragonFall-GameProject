@@ -707,6 +707,10 @@ class Game:
              print(f"You blocked part of the attack!")
              print(f"You received {damage} damage.")
 
+           elif choice == "":
+             print("Please choose an action!")
+             continue 
+
            elif defend_choice == "2":
 
              if self.player.speed_potion_active:
