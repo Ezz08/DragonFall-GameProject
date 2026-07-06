@@ -40,7 +40,7 @@ class Player(Character):
      level_multiplier = 1 + (self.level * 0.12)
      defense *= level_multiplier
 
-     return defense
+     return int(defense)
     
     def use_health_potion(self):
 
