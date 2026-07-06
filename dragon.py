@@ -3,6 +3,7 @@ from items import Item
 
 class Dragon(Boss):
     def __init__(self):
+        self.reward_claimed = False
 
         super().__init__(
             name="Ancient Dragon",
