@@ -659,6 +659,10 @@ class Game:
              self.player.use_speed_potion()
 
              continue
+          
+          else:
+             
+           print("Invalid choice!")
                   
 
           print("\n=== ENEMY TURN ===")
