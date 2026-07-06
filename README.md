@@ -1,36 +1,39 @@
-# ⚔️ Dragonfall: Ashen Curse
+# Dragonfall: Ashen Curse
 
-A terminal-based RPG game built with Python featuring turn-based combat, quests, inventory system, merchants, leveling, save/load system, and a final dragon boss fight.
+A terminal-based RPG game built with Python featuring turn-based combat, quests, inventory management, merchants, leveling, save/load functionality, and a final boss battle.
 
-# 🎮 About The Game
-Dragonfall: Ashen Curse is a text-based RPG where the player fights enemies, completes quests, collects loot, upgrades stats, and faces a final boss dragon. The game is built using Python OOP principles and focuses on strategy, progression, and survival.
+# About the Game
 
-# 📖 Story
+Dragonfall: Ashen Curse is a text-based RPG built using Python and Object-Oriented Programming principles. The player fights enemies, completes quests, earns gold and experience, purchases equipment, manages an inventory, and prepares to defeat the Ancient Dragon.
 
-In the land of **Eldoria**, peace was shattered when an ancient beast known as the **Ancient Dragon** awakened. It was not just a monster, but the origin of a dark curse that spread across the world.
+The project was created to practice OOP concepts while building a complete RPG game from scratch.
 
-From the dragon’s corrupted energy, the **Dark Mage** was born, mastering forbidden dark magic. He raised an army of the undead—**Skeletons**—to protect his secrets and spread chaos across the land.
+# Story
 
-Meanwhile, in the ruined forests, **Goblins** emerged, taking advantage of the chaos to become thieves and mercenaries, serving any power that guarantees their survival.
+In the land of **Eldoria**, peace was shattered when the **Ancient Dragon** awakened. Its dark curse spread across the kingdom, giving birth to the **Dark Mage**, who mastered forbidden magic and raised an army of **Skeletons**.
 
-You are the last hope of this world…
+Meanwhile, **Goblins** emerged from the ruined forests, serving anyone powerful enough to ensure their survival.
 
-Your mission is to stop the chain of destruction:
+As the last remaining hero, your mission is to defeat every threat standing between you and the Ancient Dragon to restore peace to Eldoria.
 
-🧙 Dark Mage → ☠ Skeleton Army → 👾 Goblins → 🔥 Ancient Dragon
+# Features
 
-And bring peace back to Eldoria once again.
+* Turn-based combat system
+* Basic and Special Attacks
+* Defense and Dodge mechanics
+* Multiple enemy types
+* Quest system
+* Merchant system
+* Inventory management
+* Weapons and Armor equipment
+* Health and Speed potions
+* Leveling and EXP progression
+* Save and Load system
+* Final Ancient Dragon boss battle
 
-# 🧠 Features
-⚔️ Turn-based combat system with basic & special attacks, dodge and defense mechanics.  
-👾 Multiple enemies including Goblin, Skeleton, Dark Mage, and Ancient Dragon boss.  
-🧾 Quest system with kill-based objectives and reward system.  
-🛒 Merchant system for buying weapons, potions, and upgrades.  
-🎒 Inventory system with item usage and management.  
-📊 Leveling system with EXP and scaling difficulty.  
-💾 Save and Load system for full game progress persistence.
+# Project Structure
 
-# 🧱 Project Structure
+```text
 GameProject/
 ├── main.py
 ├── Game.py
@@ -45,68 +48,109 @@ GameProject/
 ├── DarkMage.py
 ├── dragon.py
 ├── ui.py
-└── save.json
+├── save.json
+└── requirements.txt
+```
 
-# ▶️ How to Run
-Install Python, pyfiglet library(pip install pyfiglet), rich library(pip install rich), open terminal in project folder, then run:
+# Getting Started
+
+## Dependencies
+
+* Python 3.10+
+* rich
+* pyfiglet
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Ezz08/DragonFall-GameProject.git
+```
+
+Move into the project folder:
+
+```bash
+cd GameProject
+```
+
+Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+# Running the Game
+
+```bash
 python main.py
+```
 
-# 📌 Input Rules (Important)
+# Controls
 
-Please follow these rules when playing the game:
+Player Turn
 
----
+* 1 → Basic Attack
+* 2 → Special Attack
+* 3 → Health Potion
+* 4 → Speed Potion
 
-## 🎮 Number Inputs
-- When selecting an option, **do NOT add spaces**
-- Enter the number directly
+Enemy Turn
 
-✔ Correct:
-1
-2
+* 1 → Defend
+* 2 → Dodge
 
-❌ Wrong:
- --space-- 1
- --space-- 2
+# Input Rules
 
- 
----
+* Enter menu options using numbers only.
+* Do not type extra spaces.
+* Item names must match the correct spelling.
+* Capitalization matters for text input.
 
-## 💬 Text Inputs
-- Input must match **exact spelling**
-- Case-sensitive (capital letters matter)
-- Do NOT add spaces at the beginning
+# Save System
 
-✔ Correct:
-Health Potion
-
-❌ Wrong:
-health potion 
-
----
-
-## ⚠️ Important Note
-The game uses strict input matching, so even small differences (spaces or capitalization) may cause the input to fail.
-
-# 🎮 Controls
-1 → Basic Attack  
-2 → Special Attack  
-3 → Use Health Potion  
-4 → Use Speed Potion  
-
-Enemy Turn:  
-1 → Defend  
-2 → Dribble / Dodge  
-
-# 💾 Save System
 The game saves:
-Player stats, inventory, quests progress, gold, EXP, and level scaling. You can load full progress anytime from the main menu.
 
-# 🔥 Future Improvements
-Add animations in terminal, better UI design, sound effects, more enemies, skill trees, and improved AI behavior.
+* Player statistics
+* Gold
+* Experience
+* Level
+* Inventory
+* Quest progress
+* Equipment
 
-# 👨‍💻 Developer Notes
-Built using Python OOP concepts: classes, inheritance, polymorphism, composition, game loops, and state management.
+You can continue your progress anytime from the main menu.
 
-# ⚔️ Enjoy The Game
-Fight, survive, and defeat the Ancient Dragon!
+# Future Improvements
+
+* More enemy types
+* Additional quests
+* Skills and abilities
+* Better AI
+* Improved terminal UI
+* Sound effects
+* More equipment and items
+
+# Developer Notes
+
+This project demonstrates several Object-Oriented Programming concepts, including:
+
+* Classes
+* Inheritance
+* Polymorphism
+* Composition
+* Encapsulation
+* Game loops
+* State management
+
+# Author
+
+Developed by **Ezz Fawzy**
+
+# License
+
+This project is currently not licensed.
+
+# Acknowledgments
+
+Thanks to everyone who provided feedback and suggestions that helped improve this project.
