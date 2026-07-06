@@ -24,6 +24,10 @@ class Quest:
      if not self.completed:
         print("Quest is not completed yet!")
         return
+     
+     if self.reward_claimed:
+        print("Reward already claimed!")
+        return
 
      player.earn_gold(self.reward_gold)
 
