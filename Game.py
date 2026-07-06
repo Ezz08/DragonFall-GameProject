@@ -824,8 +824,7 @@ class Game:
 
      while self.player.health > 0 and dragon.health > 0:
 
-        if player_special_cooldown > 0:
-            player_special_cooldown -= 1
+        player_special_cooldown = max(0, player_special_cooldown - 1)
 
         dragon.check_phase()
 
@@ -839,7 +838,7 @@ class Game:
             print("\n=== YOUR TURN ===")
             print("1. Basic Attack")
 
-            if player_special_cooldown == 0:
+            if player_special_cooldown <= 0:
                 print("2. Special Attack")
 
             if self.player.inventory.has_item("Health Potion"):
