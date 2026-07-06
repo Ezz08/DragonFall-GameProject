@@ -812,10 +812,7 @@ class Game:
        print(f"\n🔥 FINAL BOSS: {dragon.name} appears!")
 
        while self.player.health > 0 and dragon.health > 0:
-          
-          if player_special_cooldown > 0:
-              player_special_cooldown -= 1
-          
+                   
           dragon.check_phase()
 
           print("\n==============================")
@@ -924,6 +921,9 @@ class Game:
 
            turn = "player"
            continue
+
+          if player_special_cooldown > 0:
+            player_special_cooldown -= 1
           
 
           if dragon.health <= 0:
