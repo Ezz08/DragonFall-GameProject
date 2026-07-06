@@ -583,6 +583,8 @@ class Game:
        print("Battle started")
        print("Player HP:", self.player.health)
        print("Enemy HP:", enemy.health)
+
+       turn = "player"
        
        player_special_cooldown = 0
 
@@ -595,21 +597,23 @@ class Game:
           print(f"{enemy.name}: {enemy.health}")
           print("━━━━━━━━━━━━━━━━━━━━━━\n")
 
-          print("\n=== YOUR TURN ===")
-          print("1. Basic Attack")
+          if turn == "player":
 
-          if player_special_cooldown == 0:
+           print("\n=== YOUR TURN ===")
+           print("1. Basic Attack")
+
+           if player_special_cooldown == 0:
             print("2. Special Attack")
 
-          if self.player.inventory.has_item("Health Potion"):
+           if self.player.inventory.has_item("Health Potion"):
             print("3. Health Potion") 
 
-          if self.player.inventory.has_item("Speed Potion"):
+           if self.player.inventory.has_item("Speed Potion"):
             print("4. Speed Potion")
 
-          choice = input("Choose:") 
+           choice = input("Choose:") 
 
-          if choice == "1":
+           if choice == "1":
              attack = self.player.basic_attack()
              defense = enemy.defend()
 
@@ -622,7 +626,7 @@ class Game:
              if enemy.health <= 0:
                return self.victory(enemy)      
 
-          elif choice == "2":
+           elif choice == "2":
 
              if player_special_cooldown == 0:
 
@@ -650,17 +654,20 @@ class Game:
 
                 continue
 
-          elif choice == "3":
+           elif choice == "3":
              self.player.use_health_potion()
 
              continue
 
-          elif choice == "4":
+           elif choice == "4":
              self.player.use_speed_potion()
 
              continue
           
-          else:
+             
+           turn = "enemy"
+
+          elif turn == "enemy":
              
            print("Invalid choice!")
                   
@@ -719,7 +726,12 @@ class Game:
 
           else:
              print("invalid choice!")
-             continue                          
+             continue 
+          
+          turn = "player"
+
+    def new_method(self, turn):
+        turn = "enemy"                         
 
   
     def game_over(self, enemy):
