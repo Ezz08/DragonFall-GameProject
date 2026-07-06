@@ -141,7 +141,7 @@ class Game:
 
               quest = Quest(
                 title="Dragon Slayer",
-                target_enemy="Ancient dragon",
+                target_enemy="Ancient Dragon",
                 required_kills=1,
                 reward_gold=800,
                 repeatable=False
@@ -952,17 +952,24 @@ class Game:
       exp = dragon.exp_drop
 
       if choice == "1":
-        print(f"\n💰 You earned {gold} Gold!")
-        print(f"⭐ You gained {exp} EXP!")
+         
+         if dragon.reward_claimed:
+          print("Already claimed!")
+          return "main_menu"
+         
+         print(f"\n💰 You earned {gold} Gold!")
+         print(f"⭐ You gained {exp} EXP!")
 
-        self.player.earn_gold(gold)
-        self.player.gain_exp(exp)
+         self.player.earn_gold(gold)
+         self.player.gain_exp(exp)
 
-        for quest in self.quests:
+         dragon.reward_claimed = True
+
+         for quest in self.quests:
             quest.update_progress(dragon.name)
 
-        self.player.health = 100
-        self.dragon_victory_menu(dragon)  
+         self.player.health = 100
+         return "main_menu"  
 
       elif choice == "2":
         loot = dragon.drop_loot()
