@@ -733,13 +733,9 @@ class Game:
 
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
-
+      
            if player_special_cooldown > 0:
-              player_special_cooldown -= 1 
-
-           else:
-             print("invalid choice!")
-             continue 
+              player_special_cooldown -= 1  
           
            turn = "player"
            continue
