@@ -837,7 +837,14 @@ class Game:
            choice = input("Choose: ")
 
            if choice == "1":
-            self.player.basic_attack_target(dragon)
+            if player_special_cooldown == 0:
+             self.player.basic_attack_target(dragon)
+             player_special_cooldown = 2
+
+            else:
+             print(f"Cooldown: {player_special_cooldown}")
+             continue
+
             if dragon.health <= 0:
                 return self.dragon_victory_menu(dragon)
 
@@ -921,10 +928,9 @@ class Game:
 
            turn = "player"
            continue
-
+          
           if player_special_cooldown > 0:
             player_special_cooldown -= 1
-          
 
           if dragon.health <= 0:
             result = self.dragon_victory_menu(dragon)
