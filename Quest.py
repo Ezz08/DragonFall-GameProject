@@ -11,7 +11,7 @@ class Quest:
 
     def update_progress(self, enemy_name):
 
-      if enemy_name != self.target_enemy:
+      if enemy_name.lower().strip() != self.target_enemy.lower().strip():
         return
 
       self.current_kills += 1

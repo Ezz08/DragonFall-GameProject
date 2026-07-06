@@ -854,6 +854,10 @@ class Game:
             self.player.use_speed_potion()
             continue
            
+           elif choice == "":
+            print("Please choose an action!")
+            continue
+           
            turn = "dragon"
 
           elif turn == "dragon": 
@@ -906,6 +910,13 @@ class Game:
 
                    print("Dodge Failed!")
                    print(f"You received {damage} damage.") 
+                   
+             if player_special_cooldown > 0:
+              player_special_cooldown -= 1      
+
+           else:
+            print("Invalid choice!")
+            continue        
 
            turn = "player"
            continue
